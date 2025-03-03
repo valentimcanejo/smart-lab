@@ -1,7 +1,9 @@
 import { Text } from "react-native";
-import { Redirect, Stack } from "expo-router";
+import { Redirect, Stack, Tabs } from "expo-router";
 
 import { useSession } from "../../context/AuthContext";
+import { FontAwesome } from "@expo/vector-icons";
+import { AvatarIcon, GoogleIcon, Icon } from "../../components/ui/icon";
 
 export default function AppLayout() {
   const { session, isLoading } = useSession();
@@ -20,5 +22,46 @@ export default function AppLayout() {
   }
 
   // This layout can be deferred because it's not the root layout.
-  return <Stack />;
+  return (
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "blue",
+      }}
+    >
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={20} name="home" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="search"
+        options={{
+          title: "Procurar",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={20} name="search" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="help"
+        options={{
+          title: "Ajuda",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={20} name="amazon" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Perfil",
+          tabBarIcon: ({ color }) => <Icon as={AvatarIcon} color={color} />,
+        }}
+      />
+    </Tabs>
+  );
 }

@@ -97,7 +97,7 @@ export default function Register() {
         <Button className="mt-4 " shadow fullWidth onPress={handleSubmit}>
           <ButtonText>Cadastrar-se</ButtonText>
         </Button>
-        <Button variant="link" fullWidth>
+        <Button variant="link" fullWidth onPress={() => router.back()}>
           <CustomText>Já possui uma conta</CustomText>
         </Button>
       </VStack>

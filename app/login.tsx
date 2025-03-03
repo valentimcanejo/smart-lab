@@ -29,11 +29,13 @@ export default function SignIn() {
   const [isInvalid, setIsInvalid] = useState(false);
   const [inputValue, setInputValue] = useState("12345");
   const handleSubmit = () => {
-    if (inputValue.length < 6) {
-      setIsInvalid(true);
-    } else {
-      setIsInvalid(false);
-    }
+    signIn();
+    router.replace("/");
+    // if (inputValue.length < 6) {
+    //   setIsInvalid(true);
+    // } else {
+    //   setIsInvalid(false);
+    // }
   };
   return (
     <VStack className="items-center flex-1 w-full p-4 justify-evenly">
