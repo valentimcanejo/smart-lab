@@ -16,18 +16,14 @@ import { Input, InputField } from "../components/ui/input";
 import { Button, ButtonIcon, ButtonText } from "../components/ui/button";
 import { VStack } from "../components/ui/vstack";
 import { useState } from "react";
-import {
-  AlertCircleIcon,
-  FacebookIcon,
-  GoogleIcon,
-} from "../components/ui/icon";
+import { FacebookIcon, GoogleIcon } from "../components/ui/icon";
 import { CustomText } from "../components/ui/text";
 import { HStack } from "../components/ui/hstack";
 
-export default function SignIn() {
+export default function Register() {
   const { signIn } = useSession();
   const [isInvalid, setIsInvalid] = useState(false);
-  const [inputValue, setInputValue] = useState("12345");
+  const [inputValue, setInputValue] = useState("");
   const handleSubmit = () => {
     if (inputValue.length < 6) {
       setIsInvalid(true);
@@ -38,10 +34,12 @@ export default function SignIn() {
   return (
     <VStack className="items-center flex-1 w-full p-4 justify-evenly">
       <VStack className="items-center" space="lg">
-        <CustomText className="text-3xl font-bold text-primary-500">
-          Entrar
+        <CustomText className="text-4xl font-bold text-primary-500">
+          Cadastrar Conta
         </CustomText>
-        <CustomText className="text-xl font-bold">Bem Vindo!</CustomText>
+        <CustomText className="font-bold ">
+          Cadastrar-se com email e senha
+        </CustomText>
       </VStack>
       <VStack className="items-center w-full" space="xl">
         <FormControl
@@ -73,6 +71,17 @@ export default function SignIn() {
               onChangeText={(text) => setInputValue(text)}
             />
           </Input>
+          <FormControlLabel>
+            <FormControlLabelText>Confirmar Sennha</FormControlLabelText>
+          </FormControlLabel>
+          <Input className="my-1">
+            <InputField
+              type="password"
+              placeholder="Digite a senha novamente..."
+              value={inputValue}
+              onChangeText={(text) => setInputValue(text)}
+            />
+          </Input>
           {/* <FormControlHelper>
             <FormControlHelperText>
               Must be atleast 6 characters.
@@ -84,19 +93,12 @@ export default function SignIn() {
               Atleast 6 characters are required.
             </FormControlErrorText>
           </FormControlError> */}
-          <Button variant="link" className="self-end text-primary-500">
-            <CustomText>Esqueceu a senha?</CustomText>
-          </Button>
         </FormControl>
         <Button className="mt-4 " shadow fullWidth onPress={handleSubmit}>
-          <ButtonText>Entrar</ButtonText>
+          <ButtonText>Cadastrar-se</ButtonText>
         </Button>
-        <Button
-          variant="link"
-          fullWidth
-          onPress={() => router.push("/register")}
-        >
-          <CustomText>Cadastrar-se</CustomText>
+        <Button variant="link" fullWidth>
+          <CustomText>Já possui uma conta</CustomText>
         </Button>
       </VStack>
       <VStack className="items-center w-full" space="xl">

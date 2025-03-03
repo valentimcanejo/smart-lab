@@ -88,7 +88,7 @@ const inputFieldStyle = tva({
       "2xs": "text-2xs",
       xs: "text-xs",
       sm: "text-sm",
-      md: "text-xl",
+      md: "text-md",
       lg: "text-lg",
       xl: "text-xl",
       "2xl": "text-2xl",
