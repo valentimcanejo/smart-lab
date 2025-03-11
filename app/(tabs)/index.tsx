@@ -9,20 +9,21 @@ import { ExamIcon, GoogleIcon, LocationIcon } from "../../components/ui/icon";
 import { HStack } from "../../components/ui/hstack";
 import { VStack } from "../../components/ui/vstack";
 import { Grid, GridItem } from "../../components/ui/grid";
+import { Href } from "expo-router";
 
 export default function Index() {
   const { signOut } = useSession();
 
-  const sectionsList = [
+  const sectionsList: { name: string; icon: any; route: Href }[] = [
     {
       name: "Exames",
       icon: ExamIcon,
-      route: "/exames",
+      route: "/(stack)/exames",
     },
     {
       name: "Unidades",
       icon: LocationIcon,
-      route: "/unidades",
+      route: "/(stack)/unidades",
     },
   ];
 
@@ -31,7 +32,12 @@ export default function Index() {
       <VStack>
         <HStack space="md" className="flex-2">
           {sectionsList?.map((section, index) => (
-            <SectionCard key={index} name={section.name} icon={section.icon} />
+            <SectionCard
+              key={index}
+              name={section.name}
+              icon={section.icon}
+              route={section.route}
+            />
           ))}
         </HStack>
       </VStack>

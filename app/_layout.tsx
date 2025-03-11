@@ -1,4 +1,4 @@
-import { Slot, SplashScreen } from "expo-router";
+import { Slot, SplashScreen, Stack } from "expo-router";
 import {
   DarkTheme,
   DefaultTheme,
@@ -19,7 +19,29 @@ export default function Root() {
     <GluestackUIProvider mode="light">
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <SessionProvider>
-          <Slot />
+          <Stack>
+            <Stack.Screen
+              name="(tabs)"
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="(stack)/exames"
+              options={{
+                headerShown: true,
+                title: "Exames",
+                headerBackTitle: "Voltar",
+              }}
+            />
+            <Stack.Screen
+              name="(stack)/unidades"
+              options={{
+                title: "Unidades",
+                headerBackTitle: "Voltar",
+              }}
+            />
+          </Stack>
         </SessionProvider>
       </ThemeProvider>
     </GluestackUIProvider>
