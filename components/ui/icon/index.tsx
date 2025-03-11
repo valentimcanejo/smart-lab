@@ -22,8 +22,8 @@ const iconStyle = tva({
       xs: "h-3.5 w-3.5",
       sm: "h-4 w-4",
       md: "h-[18px] w-[18px]",
-      lg: "h-5 w-5",
-      xl: "h-6 w-6",
+      lg: "h-8 w-8",
+      xl: "h-12 w-12",
     },
   },
 });
@@ -1586,6 +1586,24 @@ const UnlockIcon = createIcon({
 UnlockIcon.displayName = "UnlockIcon";
 export { UnlockIcon };
 
+const ExamIcon = createIcon({
+  Root: Svg,
+  viewBox: "0 0 24 24",
+  path: (
+    <>
+      <Path
+        strokeWidth="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4 10.5C3.17 10.5 2.5 11.17 2.5 12C2.5 12.83 3.17 13.5 4 13.5C4.83 13.5 5.5 12.83 5.5 12C5.5 11.17 4.83 10.5 4 10.5ZM4 4.5C3.17 4.5 2.5 5.17 2.5 6C2.5 6.83 3.17 7.5 4 7.5C4.83 7.5 5.5 6.83 5.5 6C5.5 5.17 4.83 4.5 4 4.5ZM4 16.5C3.17 16.5 2.5 17.18 2.5 18C2.5 18.82 3.18 19.5 4 19.5C4.82 19.5 5.5 18.82 5.5 18C5.5 17.18 4.83 16.5 4 16.5ZM7 19H21V17H7V19ZM7 13H21V11H7V13ZM7 5V7H21V5H7Z"
+      />
+    </>
+  ),
+});
+
+ExamIcon.displayName = "ExamIcon";
+export { ExamIcon };
+
 const GoogleIcon = createIcon({
   Root: Svg,
   viewBox: "0 0 24 24",
@@ -1645,3 +1663,27 @@ const AvatarIcon = createIcon({
 
 AvatarIcon.displayName = "AvatarIcon";
 export { AvatarIcon };
+
+const LocationIcon = createIcon({
+  Root: Svg,
+  viewBox: "0 0 24 24",
+  path: (
+    <>
+      <Path
+        strokeWidth="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM7 9C7 6.24 9.24 4 12 4C14.76 4 17 6.24 17 9C17 11.88 14.12 16.19 12 18.88C9.92 16.21 7 11.85 7 9Z"
+      />
+      <Path
+        strokeWidth="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 11.5C13.3807 11.5 14.5 10.3807 14.5 9C14.5 7.61929 13.3807 6.5 12 6.5C10.6193 6.5 9.5 7.61929 9.5 9C9.5 10.3807 10.6193 11.5 12 11.5Z"
+      />
+    </>
+  ),
+});
+
+LocationIcon.displayName = "LocationIcon";
+export { LocationIcon };
