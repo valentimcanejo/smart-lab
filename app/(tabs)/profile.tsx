@@ -5,36 +5,50 @@ import AvatarPhoto from "../../components/AvatarPhoto";
 import { CustomText } from "../../components/ui/text";
 import { Input, InputField } from "../../components/ui/input";
 import { useState } from "react";
+import { EditIcon, Icon } from "../../components/ui/icon";
+import { Button, ButtonText } from "../../components/ui/button";
+import { useSession } from "../../context/AuthContext";
 
 export default function Profile() {
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
+  const { signOut } = useSession();
 
   return (
-    <VStack className="flex-1 p-6" space="lg">
-      <VStack className="items-center justify-center " space="lg">
-        <AvatarPhoto />
-        <CustomText className="text-2xl font-bold">Rômulo</CustomText>
+    <VStack className="justify-between flex-1 p-6" space="lg">
+      <VStack>
+        <VStack className="items-center justify-center " space="lg">
+          <AvatarPhoto />
+          <HStack space="md">
+            <CustomText className="text-2xl font-bold">Rômulo</CustomText>
+            <Icon as={EditIcon} size="lg" className="text-primary-500" />
+          </HStack>
+        </VStack>
+        <VStack className="mt-4" space="lg">
+          <CustomText className="text-xl font-bold">Email:</CustomText>
+          <Input>
+            <InputField
+              type="text"
+              placeholder="Digite o email..."
+              value={email}
+              onChangeText={setEmail}
+            />
+          </Input>
+          <CustomText className="text-xl font-bold">Telefone:</CustomText>
+          <Input>
+            <InputField
+              type="text"
+              placeholder="Digite o telefone..."
+              value={telefone}
+              onChangeText={setTelefone}
+            />
+          </Input>
+        </VStack>
       </VStack>
-      <VStack className="mt-4" space="lg">
-        <CustomText className="text-xl font-bold">Email:</CustomText>
-        <Input>
-          <InputField
-            type="text"
-            placeholder="Digite o email..."
-            value={email}
-            onChangeText={setEmail}
-          />
-        </Input>
-        <CustomText className="text-xl font-bold">Telefone:</CustomText>
-        <Input>
-          <InputField
-            type="text"
-            placeholder="Digite o telefone..."
-            value={telefone}
-            onChangeText={setTelefone}
-          />
-        </Input>
+      <VStack>
+        <Button onPress={signOut}>
+          <ButtonText>Sair</ButtonText>
+        </Button>
       </VStack>
     </VStack>
   );

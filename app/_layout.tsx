@@ -19,7 +19,11 @@ export default function Root() {
     <GluestackUIProvider mode="light">
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <SessionProvider>
-          <Stack>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
             <Stack.Screen
               name="(tabs)"
               options={{
@@ -37,6 +41,7 @@ export default function Root() {
             <Stack.Screen
               name="(stack)/unidades"
               options={{
+                headerShown: true,
                 title: "Unidades",
                 headerBackTitle: "Voltar",
               }}

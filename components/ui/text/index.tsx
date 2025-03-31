@@ -28,7 +28,7 @@ const CustomText = React.forwardRef<
   ) => {
     return (
       <RNText
-        style={{ fontFamily: "Poppins_500Regular" }}
+        // style={{ fontFamily: "Poppins-Medium" }}
         className={textStyle({
           isTruncated,
           bold,

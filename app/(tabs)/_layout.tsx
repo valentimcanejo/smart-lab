@@ -1,9 +1,11 @@
 import { Text } from "react-native";
-import { Redirect, Stack, Tabs } from "expo-router";
+import { Redirect, SplashScreen, Stack, Tabs } from "expo-router";
 
 import { useSession } from "../../context/AuthContext";
 import { FontAwesome } from "@expo/vector-icons";
 import { AvatarIcon, GoogleIcon, Icon } from "../../components/ui/icon";
+import { useFonts } from "expo-font";
+import { useEffect } from "react";
 
 export default function AppLayout() {
   const { session, isLoading } = useSession();
@@ -46,7 +48,7 @@ export default function AppLayout() {
           ),
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="help"
         options={{
           title: "Ajuda",
@@ -54,7 +56,7 @@ export default function AppLayout() {
             <FontAwesome size={20} name="amazon" color={color} />
           ),
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="profile"
         options={{
