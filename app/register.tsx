@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { Text, View } from "react-native";
+import { Text, ToastAndroid, View } from "react-native";
 
 import { useSession } from "../context/AuthContext";
 import {
@@ -15,22 +15,38 @@ import {
 import { Input, InputField } from "../components/ui/input";
 import { Button, ButtonIcon, ButtonText } from "../components/ui/button";
 import { VStack } from "../components/ui/vstack";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FacebookIcon, GoogleIcon } from "../components/ui/icon";
 import { CustomText } from "../components/ui/text";
 import { HStack } from "../components/ui/hstack";
+import { register } from "../services/auth";
+import { createToast } from "@gluestack-ui/toast";
+import Toast from "react-native-toast-message";
 
 export default function Register() {
   const { signIn } = useSession();
-  const [isInvalid, setIsInvalid] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const handleSubmit = () => {
-    if (inputValue.length < 6) {
-      setIsInvalid(true);
-    } else {
-      setIsInvalid(false);
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
+
+  const handleSubmit = async () => {
+    try {
+      if (senha !== confirmarSenha) {
+        return Toast.show({
+          type: "error",
+          text1: "Senhas não coincidem",
+        });
+      }
+
+      await register(email, senha);
+    } catch (error: any) {
+      return Toast.show({
+        type: "error",
+        text1: error.message,
+      });
     }
   };
+
   return (
     <VStack className="items-center flex-1 w-full p-4 justify-evenly">
       <VStack className="items-center" space="lg">
@@ -43,7 +59,7 @@ export default function Register() {
       </VStack>
       <VStack className="items-center w-full" space="xl">
         <FormControl
-          isInvalid={isInvalid}
+          //isInvalid={isInvalid}
           isDisabled={false}
           isReadOnly={false}
           isRequired={false}
@@ -56,8 +72,8 @@ export default function Register() {
             <InputField
               type="text"
               placeholder="Digite o email..."
-              value={inputValue}
-              onChangeText={(text) => setInputValue(text)}
+              value={email}
+              onChangeText={(text) => setEmail(text)}
             />
           </Input>
           <FormControlLabel>
@@ -67,19 +83,19 @@ export default function Register() {
             <InputField
               type="password"
               placeholder="Digite a senha..."
-              value={inputValue}
-              onChangeText={(text) => setInputValue(text)}
+              value={senha}
+              onChangeText={(text) => setSenha(text)}
             />
           </Input>
           <FormControlLabel>
-            <FormControlLabelText>Confirmar Sennha</FormControlLabelText>
+            <FormControlLabelText>Confirmar Senha</FormControlLabelText>
           </FormControlLabel>
           <Input className="my-1">
             <InputField
               type="password"
               placeholder="Digite a senha novamente..."
-              value={inputValue}
-              onChangeText={(text) => setInputValue(text)}
+              value={confirmarSenha}
+              onChangeText={(text) => setConfirmarSenha(text)}
             />
           </Input>
           {/* <FormControlHelper>
@@ -112,6 +128,7 @@ export default function Register() {
           </Button>
         </HStack>
       </VStack>
+      <Toast />
     </VStack>
   );
 }
