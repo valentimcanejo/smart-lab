@@ -38,7 +38,10 @@ export default function Register() {
         });
       }
 
-      await register(email, senha);
+      await register({
+        email,
+        senha,
+      });
     } catch (error: any) {
       return Toast.show({
         type: "error",

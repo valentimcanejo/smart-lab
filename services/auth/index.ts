@@ -1,10 +1,16 @@
 import api from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LoginResponse } from "./auth-types";
+import axios from "axios";
 
-export const register = async (email: string, password: string) => {
+interface RegisterProps {
+  email: string;
+  senha: string;
+}
+
+export const register = async ({ email, senha }: RegisterProps) => {
   try {
-    await api.post("/auth/register", { email, password });
+    await api.post("/auth/cadastrar", { email, senha });
   } catch (error) {
     throw new Error("Erro ao registrar usuário", { cause: error });
   }
