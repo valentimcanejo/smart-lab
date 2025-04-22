@@ -8,6 +8,7 @@ import { useState } from "react";
 import { EditIcon, Icon } from "../../components/ui/icon";
 import { Button, ButtonText } from "../../components/ui/button";
 import { useSession } from "../../context/AuthContext";
+import { router } from "expo-router";
 
 export default function Profile() {
   const [email, setEmail] = useState("");
@@ -46,7 +47,7 @@ export default function Profile() {
         </VStack>
       </VStack>
       <VStack>
-        <Button onPress={signOut}>
+        <Button onPress={() => router.replace("/login")}>
           <ButtonText>Sair</ButtonText>
         </Button>
       </VStack>

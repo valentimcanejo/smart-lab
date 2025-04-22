@@ -23,19 +23,22 @@ import {
 } from "../components/ui/icon";
 import { CustomText } from "../components/ui/text";
 import { HStack } from "../components/ui/hstack";
+import { login } from "../services/auth";
+import Toast from "react-native-toast-message";
 
 export default function SignIn() {
-  const { signIn } = useSession();
-  const [isInvalid, setIsInvalid] = useState(false);
-  const [inputValue, setInputValue] = useState("12345");
-  const handleSubmit = () => {
-    signIn();
-    router.replace("/");
-    // if (inputValue.length < 6) {
-    //   setIsInvalid(true);
-    // } else {
-    //   setIsInvalid(false);
-    // }
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+
+  const handleSubmit = async () => {
+    try {
+      console.log(email, senha);
+
+      await login({ email, senha });
+      router.replace("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <VStack className="items-center flex-1 w-full p-4 justify-evenly">
@@ -47,7 +50,6 @@ export default function SignIn() {
       </VStack>
       <VStack className="items-center w-full" space="xl">
         <FormControl
-          isInvalid={isInvalid}
           isDisabled={false}
           isReadOnly={false}
           isRequired={false}
@@ -60,8 +62,8 @@ export default function SignIn() {
             <InputField
               type="text"
               placeholder="Digite o email..."
-              value={inputValue}
-              onChangeText={(text) => setInputValue(text)}
+              value={email}
+              onChangeText={(text) => setEmail(text)}
             />
           </Input>
           <FormControlLabel>
@@ -71,8 +73,8 @@ export default function SignIn() {
             <InputField
               type="password"
               placeholder="Digite a senha..."
-              value={inputValue}
-              onChangeText={(text) => setInputValue(text)}
+              value={senha}
+              onChangeText={(text) => setSenha(text)}
             />
           </Input>
           {/* <FormControlHelper>
@@ -112,6 +114,7 @@ export default function SignIn() {
           </Button>
         </HStack>
       </VStack>
+      <Toast />
     </VStack>
   );
 }
