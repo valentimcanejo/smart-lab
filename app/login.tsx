@@ -4,11 +4,6 @@ import { Text, View } from "react-native";
 import { useSession } from "../context/AuthContext";
 import {
   FormControl,
-  FormControlError,
-  FormControlErrorIcon,
-  FormControlErrorText,
-  FormControlHelper,
-  FormControlHelperText,
   FormControlLabel,
   FormControlLabelText,
 } from "../components/ui/form-control";
